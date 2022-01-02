@@ -1,0 +1,29 @@
+The file "Constellations.csv" contains a list of the constellations in the sky.
+
+The 4 columns in the files are:
+* Name
+* Symbol
+* RA of center
+* Dec of center
+
+Use (some) of the commands we looked at today and the file "Astro_CheatSheet.pdf" to answer the following question.
+
+Copy and Paste your answers from the command line to the bottom of this file, save the file (Ctrl-s), and then upload it to Canvas
+(Assignment: Unix)
+
+-----
+
+Questions to Answer:
+
+List the Names of the constellations that are circumpolar as seen from Seattle (lat = +47.6 deg).
+Show the command you used to create the list.
+
+
+
+List the Names of the constellations that are circumpolar as seen from McMurdo Station (lat = -77.9 deg).
+Show the command you used to create the list.
+
+
+
+How many constellations are circumpolar as seen from Quito Ecuador (lat = -0.23 deg).
+

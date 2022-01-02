@@ -1,0 +1,137 @@
+---------------------------------------------------------------------
+Astronomy 300 - Week 1 Notes - Command Line Data Exploration
+---------------------------------------------------------------------
+
+$ pwd                  Show the current directory path.
+
+$ ls                   list the files in a directory
+
+---------------------------------------------------------------------
+
+$ cd CL_Intro                           change to the CL_Intro directory
+
+$ cat NamedStars.csv
+$ more NamedStars.csv                  "q" to quit
+
+$ cp NamedStars.csv junk.dat           Copy files
+$ mv junk.dat junque.dat                Rename files
+$ rm junque.dat                         Delete file (NO RECOVERY!)
+
+---------------------------------------------------------------------
+
+HOME                        ~
+ └── Astro300-W22           ..
+         └── CL_Intro       .
+     
+$ ls .            ls of the directory you are in
+
+$ ls ..           ls of the directory above the one you are in
+
+$ ls ~            ls of the HOME directory
+
+You can replace "ls" with any command
+
+---------------------------------------------------------------------
+
+$ [Ctrl]-l         Clear the terminal
+$ [Ctrl]-c         Break command - returns to prompt
+
+---------------------------------------------------------------------
+
+wildcard (*)
+
+* - Matches ANY (0 or more) character or characters in a filename.
+
+$ ls N*.csv        will find NamedStars.csv
+
+Be very careful with "*".  It can ruin your life!  For example "rm *"
+will wipe out all of your files in the current directory, no questions
+asked, no chance of recovery. 
+
+---------------------------------------------------------------------
+
+[TAB] Completion
+$ less N[TAB]      Hit [TAB] again to show all options
+
+[UP] [DOWN] arrows - command history
+
+$ history          Shows history of commands
+
+$ !num             will rerun num command
+
+---------------------------------------------------------------------
+
+Line Numbers
+
+$ nl Jabber.txt          Shows line number
+$ nl -ba Jabber.txt      including blank lines (more useful)
+
+---------------------------------------------------------------------
+
+Chopping Streams (head and tail)
+
+$ head NamedStars.csv            first 10 lines
+$ tail NamedStars.csv            last 10 lines
+
+$ head -20 NamedStars.csv        first 20 lines
+$ tail -20 NamedStars.csv        last 20 lines
+
+---------------------------------------------------------------------
+
+Diverting Streams (> and >>)
+
+$ head -13 NamedStars.csv > SomeStars.csv     (>) crates file, overwriting old
+$ ls
+
+$ wc SomeStars.csv                             number of lines, words, and bytes
+
+$ tail -7 NamedStars.csv >> SomeStars.csv    (>>) appends data to file
+
+$ wc SomeStars.csv
+
+---------------------------------------------------------------------
+
+Connecting Streams - pipes (|)
+
+$ cat SomeStars.csv | grep 'e'        <- grep matches thing in ' '
+$ cat SomeStars.csv | grep 'e' | wc
+
+---------------------------------------------------------------------
+
+Sorting Streams - sort
+
+$ cat SomeStars.csv | sort -t ',' -k 2         Alphabetical sort (default)
+$ cat SomeStars.csv | sort -t ',' -k 1         Not good for numbers!
+$ cat SomeStars.csv | sort -t ',' -k 1 -g      Numerical sort (very different)
+$ cat SomeStars.csv | sort -t ',' -k 1 -g -r   Reverse sort
+
+-------------------------------------------------------------
+
+AWK - Aho, Weinberger, & Kernighan
+
+$ cat SomeStars.csv | awk -F, '{print $2}'    print 2nd column
+$ cat SomeStars.csv | awk -F, '{print $0}'    Same as $ cat SomeStars.csv
+
+$ cat SomeStars.csv | awk -F, '{print $2,$1}'
+
+-------------------------------------------------------------
+
+==  equal to               <   less than                  &&  and
+!=  not equal to           >=  greater than or equal to   ||  or
+>   greater than           <=  less than or equal to
+
+-------------------------------------------------------------
+
+Print all lines where the value of column 4 > 0.0:
+
+$ cat SomeStars.csv | awk -F, '{if ($4 > 0.0) print $0}'
+
+-------------------------------------------------------------
+
+Print all lines where the value of column 5 is between 0.0 and 1.0: 
+
+$ cat SomeStars.csv | awk -F, '{if ($5>0.5 && $5<1.0) print $0}'
+
+$ cat SomeStars.csv | awk -F, '{if ($5>0.25 && $5<1.0) print $0}'
+
+You can append '| wc' to the end of each of the above to get a count
